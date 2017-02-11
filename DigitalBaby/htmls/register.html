@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=yes, initial-scale=1.0">
+    <title>loginAndRegister</title>
+    <style type="text/css">
+        *{padding:0;margin:0;}
+        body,html{font-family:"Microsoft YaHei",SimHei,"微软雅黑","黑体";}
+        h2,h3{
+            font-weight:normal;
+        }
+
+        .container{
+            width:956px;
+            margin:0 auto;
+        }
+        .reg-box{
+            height:700px;
+            background:#f9fdff;
+            border:1px #81add9 solid;
+            border-top:0 none;
+        }
+        .reg-main{
+            width:700px;
+            margin:0 auto;
+            padding:1px;
+        }
+        .reg-main h3{
+            height:25px;
+            line-height:25px;
+            border-left:3px #59AfE4 solid;
+            padding-left:10px;
+            font-size:18px;
+            margin-top:80px;
+            color:#666;
+        }
+        .reg-form{
+            border-top:1px #d7d7d7 solid;
+            margin-top:10px;
+        }
+        .reg-input{
+            height:36px;
+            line-height:36px;
+            margin-top:18px;
+        }
+        .reg-input label{
+            float:left;
+            width:100px;
+            padding-right:8px;
+            text-align:right;
+            font-size:14px;
+        }
+        .reg-input input{
+            float:left;
+            width:280px;
+            height:18px;
+            line-height:18px;
+            font-size:14px;
+            padding:8px;
+            border:1px #a8d2e7 solid;
+        }
+        .reg-input span{
+            float:left;
+            padding-left:10px;
+            font-size:12px;
+            color:#666;
+        }
+        #submit{
+            width:180px;
+            height:50px;
+            font-size:24px;
+            line-height:50px;
+            text-align:center;
+            color:#fff;
+            margin-top:50px;
+            margin-left:110px;
+            border:0 none;
+            background:#b6010e;
+            font-family: "Microsoft YaHei",SimHei,"微软雅黑","黑体";
+            cursor:pointer;
+        }
+        .reg-input.foucs-input input{
+            border-color:#089efd;
+        }
+        .reg-input.error span{
+            color:red;
+        }
+        .reg-input.error input{
+            border-color:red;
+        }
+        label.error{
+            width:auto;
+            font-size:12px;
+            color:red;
+            margin-left:8px;
+        }
+    </style>
+</head>
+<body>
+	<div class="container">
+		<h2 class="reg-top"></h2>
+		<div class="reg-box">
+			<div class="reg-main">
+				<h3>注册账号</h3>
+				<form action="" method="post" class="reg-form" id="reg-form">
+					<div class="reg-input">
+						<label>昵称</label>
+						<input type="text" name="nick" id="nick" value="" />
+
+					</div>
+					<div class="reg-input">
+						<label>密码</label>
+						<input type="password" name="psw" id="psw"/>
+
+					</div>
+					<div class="reg-input">
+						<label>确认密码</label>
+						<input type="password" name="psw1" id="psw1"/>
+
+					</div>
+					<div class="reg-input">
+						<label>手机号码</label>
+						<input type="text" name="tel" id="tel"/>
+
+					</div>
+					<div class="reg-input">
+						<label>邮箱</label>
+						<input type="text" name="mail" id="mail"/>
+
+					</div>
+					<div class="reg-input">
+						<label>年龄</label>
+						<input type="text" name="old" id="old"/>
+
+					</div>
+					<div class="submit-box">
+						<button id="submit">立即注册</button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</body>
+<script src="../scripts/jquery.min.js"></script>
+<script src="../scripts/jquery.validate.min.js"></script>
+    <!--<script type="text/javascript">
+        $(function(){
+            $("#reg-form").validate({
+                rules:{
+                    nick:{
+                        required:true,
+                        rangelength:[6,10]
+                    },
+                    /*psw:{
+                     required:true,
+                     },*/
+                    psw:{
+                        isLength:true
+                    },
+                    psw1:{
+                        required:true,
+                        equalTo:"#psw"
+                    },
+                    tel:{
+                        required:true,
+                        rangelength:[0,10]
+                    }
+                },
+                messages:{
+                    nick:{
+                        required:"不能为空",
+                        rangelength:"昵称要在{0}~{1}之间"
+                    },
+                    /*psw:{
+                     required:"密码不能为空"
+                     },*/
+                    psw:{
+
+                    },
+                    psw1:{
+                        required:"确认密码不能为空",
+                        equalTo:"两次密码必须一致"
+                    },
+                    tel:{
+                        required:"不能为空",
+                        rangelength:"手机号码必须11位"
+                    }
+                }
+            });
+            //自定义验证规则
+            $.validator.addMethod("isLength",function(value,element){
+                var len=value.length;
+                return this.optional(element)||(len>=6);
+            },"密码长度不能小于6")
+        });
+    </script>-->
+    <script>
+        $(function(){
+            $("#reg-form").validate({
+                rules:{
+                    nick:{
+                        required: true,
+                        rangelength: [6, 10]
+                    },
+                    psw:{
+                        required: true,
+                        rangelength: [6, 16]
+                    },
+                    psw1:{
+                        required: true,
+                        equalTo:"#psw"
+                    },
+                    tel:{
+                        required:true,
+                        isMobile:true,
+                        number:true
+                    },
+                    mail:{
+                        required:true,
+                        email:true
+                    },
+                    old:{
+                        required:true
+                    }
+                },
+                messages:{
+                    nick:{
+                        required: "不能为空",
+                        rangelength: jQuery.validator.format("昵称长度在{0}和{1}之间")
+                    },
+                    psw:{
+                        required: "不能为空",
+                        rangelength: jQuery.validator.format("密码长度在{0}和{1}之间")
+                    },
+                    psw1:{
+                        required: "确认密码不能为空",
+                        equalTo:"两次密码不一致"
+                    },
+                    tel:{
+                        required: "不能为空",
+                        isMobile:"手机号长度为11位数字",
+                        number:"必须为数字"
+                    },
+                    mail:{
+                        required:"邮箱不能为空",
+                        email:"邮箱必须包含@和."
+                    },
+                    old:{
+                        required:"12"
+                    }
+                }
+            });
+            $.validator.addMethod("isMobile",function(value,element){
+                var length=value.length;
+                return this.optional(element)||(length==11)
+            },"手机号长度为11位数字")
+        })
+    </script>
+    </html>
